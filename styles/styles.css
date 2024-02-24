@@ -1,0 +1,12 @@
+.page__container{
+  height: 100vh;
+  background-color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas{
+  background-color: #fff;
+  border: 2px solid #000;
+}
