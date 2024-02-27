@@ -5,12 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/normalize.css">
     <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Honk&display=swap" rel="stylesheet">
     <script defer src="./js/index.js"></script>
     <title>breakGame</title>
   </head>
   <body>
     <div class="page__container">
-      <canvas class="canvas"></canvas>
+      <div class="game__container">
+        <button class="btn__home"><img src="./assets/images/icons/home.svg" alt="inicio"></button>
+        <div id="home__screen" class="container">
+          <h1>BREAK GAME</h1>
+          <div>
+            <button class="btn__play">JUGAR</button>
+            <button class="btn__maps">MAPAS</button>
+            <button class="btn__config">CONFIGURACIÓN</button>
+          </div>
+        </div>
+        <div id="maps" class="container">
+          <h2>MAPAS</h2>
+          <div id="maps__container">
+            <div class="map__a">
+              <img src="./assets/images/maps/galaxia.jfif" alt="">
+              <span>GALAXIA</span>
+            </div>
+            <div class="map__b">
+              <img src="./assets/images/maps/desierto.jfif" alt="">
+              <span>DESIERTO</span>
+            </div>
+            <div class="map__c">
+              <img src="./assets/images/maps/océano.jfif" alt="">
+              <span>OCÉANO</span>
+            </div>
+          </div>
+        </div>
+        <div id="config" class="container">
+          <h2>DIFICULTAD</h2>
+          <div>
+            <button class="btn__easy">FÁCIL</button>
+            <button class="btn__medium">MEDIA</button>
+            <button class="btn__hard">DIFÍCIL</button>
+          </div>
+        </div>
+        <div id="game__over" class="container">
+          <h2>FIN DEL JUEGO</h2>
+        </div>
+        <canvas class="canvas"></canvas>
+      </div>
     </div>
   </body>
 </html>

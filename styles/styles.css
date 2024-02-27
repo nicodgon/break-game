@@ -1,12 +1,149 @@
+/* Global */
+*{
+  font-family: "Honk", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "MORF" 15,
+    "SHLN" 50;
+}
+
+h1, h2{
+  font-size: 3em;
+  margin: 0;
+  padding: 1em 0;
+}
+
+button{
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-weight: bold;
+  background-color: #000;
+}
+
+/* Contenedor de la página */
 .page__container{
   height: 100vh;
-  background-color: #555;
+  background-color: #0f8;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.canvas{
+/* Botón para ir al inicio */
+.btn__home img{
+  width: 2em;
+}
+
+/* Página de inicio */
+.btn__home{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  background-color: #000;
+  border-radius: 10px;
+  width: 2em;
+  height: 2em;
+  font-size: 1.2em;
+}
+
+.container{
+  width: 448px;
+  height: 400px;
   background-color: #fff;
   border: 2px solid #000;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Pantallas */
+#home__screen{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #003b00;
+}
+
+#home__screen div{
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+#maps{
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  background-color: #003b00;
+}
+
+#maps span{
+  font-size: 1.5em;
+}
+
+#maps__container{
+  display: flex;
+  gap: 1em;
+}
+
+#maps__container div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  padding: .2em;
+  cursor: pointer;
+}
+
+#maps img{
+  width: 7em;
+  border-radius: 5px;
+}
+
+.map__a{
+  background-color: #f00;
+}
+
+.map__b{
+  background-color: #000;
+}
+
+.map__c{
+  background-color: #000;
+}
+
+#config{
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  background-color: #003b00;
+}
+
+#config div{
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+#config div .btn__medium{
+  background-color: #f00;
+}
+
+#game__over{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #003b00;
+}
+
+.canvas{
+  background-image: url("../assets/images/maps/galaxia.jfif");
+  background-size: cover;
+  border: 2px solid #000;
+  display: none;
 }
