@@ -22,14 +22,30 @@ const maps = document.querySelector("#maps");
 const config = document.querySelector("#config");
 const gameOverScreen = document.querySelector("#game__over");
 
+const gameOverH2 = document.querySelector("#game__over__h2");
 const canvas = document.querySelector(".canvas");
 const ctx = canvas.getContext("2d");
 
 let gameOver = false;
+let destroyedBrickCounter = 0;
 
 //Velocidad base(media)
 let ballDx = 2;
 let ballDy = -2;
+
+// variables de Briks
+const brickRowCount = 5;
+const brickColumnCount = 9;
+const brickWidth = 45;
+const brickHeight = 20;
+const brickGap = 2;
+const brickOffsetLeft = 12.5;
+const brickOffsetTop = 10;
+const bricks = [];
+const brickStatus = {
+  exists: true,
+  destroyed: false,
+};
 
 //Paddle imagen
 const paddleImg = new Image();
@@ -91,6 +107,7 @@ btnHard.addEventListener("click", () =>
 //Función principal (canvas)
 function game() {
   gameOver = false;
+  destroyedBrickCounter = 0;
   btnLeft.style.display = "flex";
   btnRight.style.display = "flex";
   homeScreen.style.display = "none";
@@ -116,20 +133,6 @@ function game() {
   let rightPressed = false;
   let leftPressed = false;
 
-  // variables de Briks
-  const brickRowCount = 5;
-  const brickColumnCount = 9;
-  const brickWidth = 45;
-  const brickHeight = 20;
-  const brickGap = 2;
-  const brickOffsetLeft = 12.5;
-  const brickOffsetTop = 10;
-  const bricks = [];
-  const brickStatus = {
-    exists: 1,
-    destroyed: 0,
-  };
-
   for (let col = 0; col < brickColumnCount; col++) {
     bricks[col] = [];
     for (let row = 0; row < brickRowCount; row++) {
@@ -145,22 +148,13 @@ function game() {
     }
   }
 
-  let count = 0;
-
-  for (let col = 0; col < brickColumnCount; col++) {
-    for (let row = 0; row < brickRowCount; row++) {
-      const currentBrick = bricks[col][row];
-      if (currentBrick.status == brickStatus.destroyed) {
-        count++;
-      }
-      if (count == brickRowCount * brickColumnCount) {
-        gameOverScreen.style.display = "flex";
-        btnLeft.style.display = "none";
-        btnRight.style.display = "none";
-        canvas.style.display = "none";
-        gameOver = true;
-      }
-    }
+  function endOfTheGame(text) {
+    gameOverH2.textContent = text;
+    gameOverScreen.style.display = "flex";
+    btnLeft.style.display = "none";
+    btnRight.style.display = "none";
+    canvas.style.display = "none";
+    gameOver = true;
   }
 
   //Dibujar la pelota
@@ -218,6 +212,7 @@ function game() {
         ) {
           ballDy = -ballDy;
           currentBrick.status = brickStatus.destroyed;
+          destroyedBrickCounter++;
         }
       }
     }
@@ -248,11 +243,7 @@ function game() {
     }
     //Si la pelota se cae se pierde la partida
     if (ballY > canvas.height) {
-      gameOverScreen.style.display = "flex";
-      btnLeft.style.display = "none";
-      btnRight.style.display = "none";
-      canvas.style.display = "none";
-      gameOver = true;
+      endOfTheGame("LO SIENTO, PERDISTE.");
     }
     ballX += ballDx;
     ballY += ballDy;
@@ -305,10 +296,22 @@ function game() {
       }
     }
 
-    btnRight.addEventListener("touchstart", () => (rightPressed = true));
-    btnLeft.addEventListener("touchstart", () => (leftPressed = true));
-    btnRight.addEventListener("touchend", () => (rightPressed = false));
-    btnLeft.addEventListener("touchend", () => (leftPressed = false));
+    btnRight.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      rightPressed = true;
+    });
+    btnLeft.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      leftPressed = true;
+    });
+    btnRight.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      rightPressed = false;
+    });
+    btnLeft.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      leftPressed = false;
+    });
     btnRight.addEventListener("mousedown", () => (rightPressed = true));
     btnRight.addEventListener("mouseup", () => (rightPressed = false));
     btnLeft.addEventListener("mousedown", () => (leftPressed = true));
@@ -325,6 +328,10 @@ function game() {
     collisionDetection();
     ballMovement();
     paddleMovement();
+
+    if (destroyedBrickCounter == brickColumnCount * brickRowCount) {
+      endOfTheGame("FELICIDADES, GANASTE!");
+    }
 
     if (!gameOver && canvas.style.display !== "none") {
       window.requestAnimationFrame(draw);

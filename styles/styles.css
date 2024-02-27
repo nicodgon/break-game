@@ -141,6 +141,12 @@ button{
   background-color: #003b00;
 }
 
+#game__over h2{
+  font-size: 2em;
+  width: 80%;
+  text-align: center;
+}
+
 /* Botones de movimiento */
 .movement_container{
   display: flex;
@@ -159,6 +165,13 @@ button{
   align-items: center;
   background: none;
   border: none;
+}
+
+#btn__left img, #btn__right img{
+  pointer-events: none; /* Evita la interacción del usuario con la imagen */
+  user-select: none; /* Evita la selección de texto en la imagen */
+  -webkit-touch-callout: none; /* Para iOS Safari */
+  -webkit-user-drag: none; /* Para iOS Safari */
 }
 
 .canvas{
