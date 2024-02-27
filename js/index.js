@@ -3,6 +3,8 @@ const btnHome = document.querySelector(".btn__home");
 const btnPlay = document.querySelector(".btn__play");
 const btnMaps = document.querySelector(".btn__maps");
 const btnConfig = document.querySelector(".btn__config");
+const btnLeft = document.querySelector("#btn__left");
+const btnRight = document.querySelector("#btn__right");
 
 // Maps
 const MapA = document.querySelector(".map__a");
@@ -15,7 +17,7 @@ const btnMedium = document.querySelector(".btn__medium");
 const btnHard = document.querySelector(".btn__hard");
 
 // Pantallas
-const homeScreen = document.querySelector("#home__screen");
+const homeScreen = document.querySelector("#home");
 const maps = document.querySelector("#maps");
 const config = document.querySelector("#config");
 const gameOverScreen = document.querySelector("#game__over");
@@ -45,6 +47,9 @@ const chooseMap = (map, activeA, activeB, activeC) => {
   MapB.style.background = activeB;
   MapC.style.background = activeC;
   canvas.style.backgroundImage = `url("../assets/images/maps/${map}.jfif")`;
+  if (map == "galaxia") paddleImg.src = "../assets/images/objects/rocket.png";
+  if (map == "desierto") paddleImg.src = "../assets/images/objects/cactus.png";
+  if (map == "océano") paddleImg.src = "../assets/images/objects/fish.png";
 };
 
 MapA.addEventListener("click", () =>
@@ -86,6 +91,8 @@ btnHard.addEventListener("click", () =>
 //Función principal (canvas)
 function game() {
   gameOver = false;
+  btnLeft.style.display = "flex";
+  btnRight.style.display = "flex";
   homeScreen.style.display = "none";
   canvas.style.display = "flex";
   canvas.width = 448;
@@ -138,6 +145,24 @@ function game() {
     }
   }
 
+  let count = 0;
+
+  for (let col = 0; col < brickColumnCount; col++) {
+    for (let row = 0; row < brickRowCount; row++) {
+      const currentBrick = bricks[col][row];
+      if (currentBrick.status == brickStatus.destroyed) {
+        count++;
+      }
+      if (count == brickRowCount * brickColumnCount) {
+        gameOverScreen.style.display = "flex";
+        btnLeft.style.display = "none";
+        btnRight.style.display = "none";
+        canvas.style.display = "none";
+        gameOver = true;
+      }
+    }
+  }
+
   //Dibujar la pelota
   function drawBall() {
     ctx.beginPath();
@@ -149,19 +174,17 @@ function game() {
 
   //Dibujar la pala
   function drawPaddle() {
-    ctx.fillStyle = "#f00";
-    ctx.fillRect(paddleX, paddleY, paddleWidth, paddleHeight);
-    // ctx.drawImage(
-    //   paddleImg,
-    //   0,
-    //   15,
-    //   paddleWidth,
-    //   paddleHeight,
-    //   paddleX,
-    //   paddleY,
-    //   paddleWidth,
-    //   paddleHeight,
-    // );
+    ctx.drawImage(
+      paddleImg,
+      0,
+      0,
+      paddleWidth,
+      paddleHeight + 20,
+      paddleX,
+      paddleY,
+      paddleWidth,
+      paddleHeight + 20
+    );
   }
 
   //Dibujar los ladrillos
@@ -202,25 +225,32 @@ function game() {
 
   //Movimiento de la pelota y sus colisiónes
   function ballMovement() {
-    //Si la pelota toca los bordes de x rebota
+    //Si la pelota toca los bordes de "x" rebota
     if (ballX > canvas.width - ballRadius || ballX < ballRadius) {
       ballDx = -ballDx;
     }
-    //Si la pelota toca los bordes de y rebota
+    //Si la pelota toca los bordes de "y" rebota
     if (ballY < ballRadius) {
       ballDy = -ballDy;
     }
+    if (ballY > paddleY - 3) {
+      ballDx = -ballDx;
+    }
     //Si la pelota toca la paleta rebota
     if (
-      ballY > paddleY - ballRadius &&
+      ballY + ballRadius > paddleY &&
+      ballY - ballRadius < paddleY + paddleHeight &&
       ballX > paddleX &&
       ballX < paddleX + paddleWidth
     ) {
+      ballDx = +ballDx;
       ballDy = -ballDy;
     }
     //Si la pelota se cae se pierde la partida
     if (ballY > canvas.height) {
       gameOverScreen.style.display = "flex";
+      btnLeft.style.display = "none";
+      btnRight.style.display = "none";
       canvas.style.display = "none";
       gameOver = true;
     }
@@ -246,6 +276,7 @@ function game() {
   function initEvents() {
     document.addEventListener("keydown", keyDownHandler);
     document.addEventListener("keyup", keyUpHandler);
+
     function keyDownHandler(event) {
       const { key } = event;
       if (key == "Right" || key == "ArrowRight" || key == "d" || key == "D") {
@@ -259,6 +290,7 @@ function game() {
         leftPressed = true;
       }
     }
+
     function keyUpHandler(event) {
       const { key } = event;
       if (key == "Right" || key == "ArrowRight" || key == "d" || key == "D") {
@@ -272,6 +304,15 @@ function game() {
         leftPressed = false;
       }
     }
+
+    btnRight.addEventListener("touchstart", () => (rightPressed = true));
+    btnLeft.addEventListener("touchstart", () => (leftPressed = true));
+    btnRight.addEventListener("touchend", () => (rightPressed = false));
+    btnLeft.addEventListener("touchend", () => (leftPressed = false));
+    btnRight.addEventListener("mousedown", () => (rightPressed = true));
+    btnRight.addEventListener("mouseup", () => (rightPressed = false));
+    btnLeft.addEventListener("mousedown", () => (leftPressed = true));
+    btnLeft.addEventListener("mouseup", () => (leftPressed = false));
   }
 
   //Llamar a las funciónes
@@ -284,15 +325,18 @@ function game() {
     collisionDetection();
     ballMovement();
     paddleMovement();
-    initEvents();
 
     if (!gameOver && canvas.style.display !== "none") {
       window.requestAnimationFrame(draw);
     }
   }
 
+  initEvents();
   draw();
 }
+
+//Funcionalidad de los botones
+btnPlay.addEventListener("click", game);
 
 btnHome.addEventListener("click", () => {
   homeScreen.style.display = "flex";
@@ -300,18 +344,29 @@ btnHome.addEventListener("click", () => {
   maps.style.display = "none";
   config.style.display = "none";
   gameOverScreen.style.display = "none";
+  btnLeft.style.display = "none";
+  btnRight.style.display = "none";
 });
 
 btnMaps.addEventListener("click", () => {
   maps.style.display = "flex";
   homeScreen.style.display = "none";
+  btnLeft.style.display = "none";
+  btnRight.style.display = "none";
 });
 
 btnConfig.addEventListener("click", () => {
   config.style.display = "flex";
   homeScreen.style.display = "none";
+  btnLeft.style.display = "none";
+  btnRight.style.display = "none";
 });
 
+btnLeft.style.display = "none";
+btnRight.style.display = "none";
+
+//Funcionalidad al botón de escape
+canvas.style.display = "none";
 document.onkeydown = function (event) {
   const { key } = event;
   if (canvas.style.display == "none") {
@@ -319,8 +374,7 @@ document.onkeydown = function (event) {
       homeScreen.style.display = "flex";
       maps.style.display = "none";
       config.style.display = "none";
+      gameOverScreen.style.display = "none";
     }
   }
 };
-
-btnPlay.addEventListener("click", game);

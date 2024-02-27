@@ -35,7 +35,7 @@ button{
 
 /* Botón para ir al inicio */
 .btn__home img{
-  width: 2em;
+  width: 1.5em;
 }
 
 /* Página de inicio */
@@ -44,16 +44,16 @@ button{
   justify-content: center;
   align-items: center;
   margin-left: auto;
-  background-color: #000;
-  border-radius: 10px;
-  width: 2em;
-  height: 2em;
+  background-color: #000000;
+  border-radius: 20px 20px 0 0;
+  width: 1.7em;
+  height: 1.7em;
   font-size: 1.2em;
 }
 
 .container{
-  width: 448px;
-  height: 400px;
+  width: 28em;
+  height: 29.15em;
   background-color: #fff;
   border: 2px solid #000;
   align-items: center;
@@ -61,14 +61,14 @@ button{
 }
 
 /* Pantallas */
-#home__screen{
+#home{
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #003b00;
 }
 
-#home__screen div{
+#home div{
   display: flex;
   flex-direction: column;
   gap: 1em;
@@ -141,9 +141,64 @@ button{
   background-color: #003b00;
 }
 
+/* Botones de movimiento */
+.movement_container{
+  display: flex;
+  justify-content: space-between;
+  background-color: #000000bd;
+}
+
+.movement_container img{
+  width: 2em;
+  height: 2em;
+}
+
+#btn__left, #btn__right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+}
+
 .canvas{
   background-image: url("../assets/images/maps/galaxia.jfif");
   background-size: cover;
   border: 2px solid #000;
   display: none;
+}
+
+@media only screen and (max-width:768px){
+
+  .canvas{
+    width: calc(100vw - .5em);
+    height: 20em;
+  }
+
+  .container{
+    width: calc(100vw - .5em);
+    height: 24.11em;
+  }
+
+  #home div{
+    padding-top: 3em;
+  }
+
+  #maps__container{
+  flex-direction: column;
+  }
+
+  #maps__container img{
+    width: 3.5em;
+  }
+
+  #config div{
+    flex-direction: column;
+    padding-top: 3em;
+  }
+
+  h1, h2{
+    font-size: 2.5em;
+    padding: .4em 0;
+  }
 }
