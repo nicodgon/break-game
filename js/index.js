@@ -97,8 +97,8 @@ const handleMediaQueryChange = (event) => {
     );
   } else {
     // Celular
-    ballDx = 0;
-    ballDy = 0;
+    ballDx = 4;
+    ballDy = -4;
     paddleDx = 6;
     // Dificultad fácil
     elements.btnEasy.addEventListener("click", () =>

@@ -181,16 +181,18 @@ button{
   display: none;
 }
 
-@media only screen and (max-height:500px){
+@media only screen and (min-width:768px) and (max-width:1280px){
   #page__container{
     align-items: start;
   }
 
   #canvas{
+    width: calc(100vw - .3em);
     height: calc(100vh - 4px);
   }
 
   .container{
+    width: calc(100vw - .4em);
     height: calc(100vh - 4px);
   }
 
@@ -202,14 +204,14 @@ button{
   #btn__home{
     position:absolute;
     top: .1em;
-    right: .2em;
+    right: 1.4em;
     border-radius: 50%;
   }
 
   #movement_container{
     position: absolute;
-    width: calc(100vw - 4px);
-    top:calc(100vh - 4px - 4em);
+    width: calc(100vw - 3.5em);
+    top:calc(100vh - 6em);
     display: flex;
     justify-content: space-between;
     background-color: #00000000;
