@@ -15,15 +15,15 @@
     <div class="page__container">
       <div class="game__container">
         <button class="btn__home"><img src="./assets/images/icons/home.svg" alt="inicio"></button>
-        <div id="home" class="container">
+        <section id="home" class="container">
           <h1>BREAK GAME</h1>
           <div>
             <button class="btn__play">JUGAR</button>
             <button class="btn__maps">MAPAS</button>
             <button class="btn__config">CONFIGURACIÓN</button>
           </div>
-        </div>
-        <div id="maps" class="container">
+        </section>
+        <section id="maps" class="container">
           <h2>MAPAS</h2>
           <div id="maps__container">
             <div class="map__a">
@@ -39,23 +39,28 @@
               <span>OCÉANO</span>
             </div>
           </div>
-        </div>
-        <div id="config" class="container">
+        </section>
+        <section id="config" class="container">
           <h2>DIFICULTAD</h2>
-          <div>
-            <button class="btn__easy">FÁCIL</button>
-            <button class="btn__medium">MEDIA</button>
-            <button class="btn__hard">DIFÍCIL</button>
+          <div class="container__desktop">
+            <button class="btn__easy__desktop">FÁCIL</button>
+            <button class="btn__medium__desktop">MEDIA</button>
+            <button class="btn__hard__desktop">DIFÍCIL</button>
           </div>
-        </div>
-        <div id="game__over" class="container">
+          <div class="container__mobile">
+            <button class="btn__easy__mobile">FÁCIL</button>
+            <button class="btn__medium__mobile">MEDIA</button>
+            <button class="btn__hard__mobile">DIFÍCIL</button>
+          </div>
+        </section>
+        <section id="game__over" class="container">
           <h2 id="game__over__h2"></h2>
-        </div>
+        </section>
         <canvas class="canvas"></canvas>
-        <div class="movement_container">
+        <section class="movement_container">
           <button id="btn__left"><img src="./assets/images/icons/arrow-left.svg" alt="flecha izquierda"></button>
           <button id="btn__right"><img src="./assets/images/icons/arrow-right.svg" alt="flecha derecha"></button>
-        </div>
+        </section>
       </div>
     </div>
   </body>

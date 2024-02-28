@@ -11,10 +11,15 @@ const MapA = document.querySelector(".map__a");
 const MapB = document.querySelector(".map__b");
 const MapC = document.querySelector(".map__c");
 
-//Botones de dificultad
-const btnEasy = document.querySelector(".btn__easy");
-const btnMedium = document.querySelector(".btn__medium");
-const btnHard = document.querySelector(".btn__hard");
+//Botones de dificultad desktop
+const btnEasyD = document.querySelector(".btn__easy__desktop");
+const btnMediumD = document.querySelector(".btn__medium__desktop");
+const btnHardD = document.querySelector(".btn__hard__desktop");
+
+//Botones de dificultad mobile
+const btnEasyM = document.querySelector(".btn__easy__mobile");
+const btnMediumM = document.querySelector(".btn__medium__mobile");
+const btnHardM = document.querySelector(".btn__hard__mobile");
 
 // Pantallas
 const homeScreen = document.querySelector("#home");
@@ -30,8 +35,17 @@ let gameOver = false;
 let destroyedBrickCounter = 0;
 
 //Velocidad base(media)
-let ballDx = 2;
-let ballDy = -2;
+  let ballDx
+  let ballDy
+if (
+  btnEasyD.style.display == "none"
+) {
+  ballDx = 2;
+  ballDy = -2;
+} else {
+  ballDx = 4;
+  ballDy = -4;
+}
 
 // variables de Briks
 const brickRowCount = 5;
@@ -84,24 +98,49 @@ const selectDifficulty = (a, b, activeEasy, activeMedium, activeHard) => {
   ballDy = b;
   homeScreen.style.display = "flex";
   config.style.display = "none";
-  btnEasy.style.background = activeEasy;
-  btnMedium.style.background = activeMedium;
-  btnHard.style.background = activeHard;
+  if (
+    btnEasyD.style.display == "none"
+  ) {
+    btnEasyM.style.background = activeEasy;
+    btnMediumM.style.background = activeMedium;
+    btnHardM.style.background = activeHard;
+  } else {
+    btnEasyD.style.background = activeEasy;
+    btnMediumD.style.background = activeMedium;
+    btnHardD.style.background = activeHard;
+  }
 };
 
-// Dificultad fácil
-btnEasy.addEventListener("click", () =>
+// Desktop
+// Dificultad fácil desktop
+btnEasyD.addEventListener("click", () =>
   selectDifficulty(1, -1, "#f00", "#000", "#000")
 );
 
-// Dificultad media
-btnMedium.addEventListener("click", () =>
+// Dificultad media desktop
+btnMediumD.addEventListener("click", () =>
   selectDifficulty(2, -2, "#000", "#f00", "#000")
 );
 
-// Dificultad difícil
-btnHard.addEventListener("click", () =>
+// Dificultad difícil desktop
+btnHardD.addEventListener("click", () =>
   selectDifficulty(3, -3, "#000", "#000", "#f00")
+);
+
+// Mobile
+// Dificultad fácil mobile
+btnEasyM.addEventListener("click", () =>
+  selectDifficulty(3, -3, "#f00", "#000", "#000")
+);
+
+// Dificultad media mobile
+btnMediumM.addEventListener("click", () =>
+  selectDifficulty(4, -4, "#000", "#f00", "#000")
+);
+
+// Dificultad difícil mobile
+btnHardM.addEventListener("click", () =>
+  selectDifficulty(5, -5, "#000", "#000", "#f00")
 );
 
 //Función principal (canvas)

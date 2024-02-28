@@ -130,8 +130,12 @@ button{
   margin-top: 1em;
 }
 
-#config div .btn__medium{
+.btn__medium__desktop, .btn__medium__mobile{
   background-color: #f00;
+}
+
+#config .container__mobile{
+  display: none;
 }
 
 #game__over{
@@ -208,6 +212,14 @@ button{
   #config div{
     flex-direction: column;
     padding-top: 3em;
+  }
+
+  #config .container__desktop{
+    display: none;
+  }
+
+  #config .container__mobile{
+    display: flex;
   }
 
   h1, h2{
