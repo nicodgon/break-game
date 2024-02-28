@@ -248,7 +248,7 @@
   #movement_container{
     position: absolute;
     width: 100vw;
-    top:60vh;
+    top:50vh;
     display: flex;
     justify-content: space-between;
     background-color: #00000000;
