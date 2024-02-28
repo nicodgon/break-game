@@ -171,10 +171,6 @@
   background-color: #000;
 }
 
-#btn__medium{
-  background-color: #f00;
-}
-
 #game__over{
   display: none;
   align-items: center;

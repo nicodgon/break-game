@@ -76,6 +76,7 @@ const selectDifficulty = (a, b, activeEasy, activeMedium, activeHard) => {
   elements.btnHard.style.background = activeHard;
 };
 
+elements.btnMedium.style.background = "#f00";
 //MediaQuery 768px
 const handleMediaQueryChange = (event) => {
   if (event.matches) {
