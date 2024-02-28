@@ -35,16 +35,17 @@ let gameOver = false;
 let destroyedBrickCounter = 0;
 
 //Velocidad base(media)
-  let ballDx
-  let ballDy
-if (
-  btnEasyD.style.display == "none"
-) {
+let ballDx;
+let ballDy;
+let paddleDx;
+if (btnEasyD.style.display == "none") {
   ballDx = 2;
   ballDy = -2;
+  paddleDx = 3;
 } else {
   ballDx = 4;
   ballDy = -4;
+  paddleDx = 6;
 }
 
 // variables de Briks
@@ -98,9 +99,7 @@ const selectDifficulty = (a, b, activeEasy, activeMedium, activeHard) => {
   ballDy = b;
   homeScreen.style.display = "flex";
   config.style.display = "none";
-  if (
-    btnEasyD.style.display == "none"
-  ) {
+  if (btnEasyD.style.display == "none") {
     btnEasyM.style.background = activeEasy;
     btnMediumM.style.background = activeMedium;
     btnHardM.style.background = activeHard;
@@ -166,8 +165,6 @@ function game() {
 
   let paddleX = (canvas.width - paddleWidth) / 2;
   let paddleY = canvas.height - paddleHeight * 2;
-
-  let paddleDx = 3;
 
   let rightPressed = false;
   let leftPressed = false;
