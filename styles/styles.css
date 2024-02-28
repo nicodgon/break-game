@@ -9,21 +9,6 @@
     "SHLN" 50;
 }
 
-h1, h2{
-  font-size: 3em;
-  margin: 0;
-  padding: 1em 0;
-}
-
-button{
-  font-size: 2em;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 1px solid #000;
-  font-weight: bold;
-  background-color: #000;
-}
-
 /* Contenedor de la página */
 #page__container{
   height: 100vh;
@@ -35,7 +20,7 @@ button{
 
 /* Botón para ir al inicio */
 #btn__home img{
-  width: 1.5em;
+  width: 1.2em;
 }
 
 /* Página de inicio */
@@ -48,7 +33,9 @@ button{
   border-radius: 20px 20px 0 0;
   width: 1.7em;
   height: 1.7em;
-  font-size: 1.2em;
+  font-size: 1.5em;
+  cursor: pointer;
+  border: 1px solid #000;
 }
 
 .container{
@@ -68,6 +55,12 @@ button{
   background-color: #003b00;
 }
 
+#home h1{
+  font-size: 3em;
+  margin: 0;
+  padding: 1em 0;
+}
+
 #home div{
   display: flex;
   flex-direction: column;
@@ -75,11 +68,35 @@ button{
   margin-top: 1em;
 }
 
+#home button{
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-weight: bold;
+  background-color: #000;
+}
+
+#maps__container button{
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-weight: bold;
+  background-color: #000;
+}
+
 #maps{
   display: none;
   align-items: center;
   flex-direction: column;
   background-color: #003b00;
+}
+
+#maps h2{
+  font-size: 3em;
+  margin: 0;
+  padding: 1em 0;
 }
 
 #maps span{
@@ -98,6 +115,15 @@ button{
   border-radius: 5px;
   padding: .2em;
   cursor: pointer;
+}
+
+#maps__container button{
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-weight: bold;
+  background-color: #000;
 }
 
 #maps img{
@@ -124,10 +150,25 @@ button{
   background-color: #003b00;
 }
 
+#config h2{
+  font-size: 3em;
+  margin: 0;
+  padding: 1em 0;
+}
+
 #config div{
   display: flex;
   gap: 1em;
   margin-top: 1em;
+}
+
+#config button{
+  font-size: 2em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #000;
+  font-weight: bold;
+  background-color: #000;
 }
 
 #btn__medium{
@@ -203,18 +244,27 @@ button{
   /* Página de inicio */
   #btn__home{
     position:absolute;
-    top: .1em;
-    right: 1.4em;
+    top: .2em;
+    right: .2em;
     border-radius: 50%;
   }
 
   #movement_container{
     position: absolute;
-    width: calc(100vw - 3.5em);
+    width: 100vw;
     top:calc(100vh - 6em);
     display: flex;
     justify-content: space-between;
     background-color: #00000000;
+  }
+
+  #movement_container button{
+    font-size: 2em;
+    cursor: pointer;
+  }
+
+  #home h1, #maps h2, #config h2, #game__over h2{
+    padding-bottom: .5em;
   }
 }
 
@@ -251,7 +301,7 @@ button{
     display: none;
   }
 
-  h1, h2{
+  #home h1, #maps h2, #config h2, #game__over h2{
     font-size: 2.5em;
     padding: .4em 0;
   }
