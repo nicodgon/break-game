@@ -111,7 +111,7 @@ const handleMediaQueryChange = (event) => {
     );
     // Dificultad difícil
     elements.btnHard.addEventListener("click", () =>
-      selectDifficulty(5, -5, "#000", "#000", "#f00")
+      selectDifficulty(6, -6, "#000", "#000", "#f00")
     );
   }
 };
