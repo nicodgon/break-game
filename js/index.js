@@ -114,9 +114,9 @@ const handleMediaQueryChange = (event) => {
     );
   }
 };
-const mediaQuery = window.matchMedia("(min-width: 768px)");
-mediaQuery.addEventListener("onload", handleMediaQueryChange);
-handleMediaQueryChange(mediaQuery);
+const mediaQueryMobile = window.matchMedia("(min-width: 1280px)");
+mediaQueryMobile.addEventListener("change", handleMediaQueryChange);
+handleMediaQueryChange(mediaQueryMobile);
 
 elements.canvas.addEventListener("contextmenu", (event) => {
   event.preventDefault();
