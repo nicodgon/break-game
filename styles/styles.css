@@ -301,4 +301,9 @@
     font-size: 2.5em;
     padding: .4em 0;
   }
+
+  #movement_container button{
+    font-size: 2em;
+    cursor: pointer;
+  }
 }
