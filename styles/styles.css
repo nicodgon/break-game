@@ -25,7 +25,7 @@ button{
 }
 
 /* Contenedor de la página */
-.page__container{
+#page__container{
   height: 100vh;
   background-color: #0f8;
   display: flex;
@@ -34,12 +34,12 @@ button{
 }
 
 /* Botón para ir al inicio */
-.btn__home img{
+#btn__home img{
   width: 1.5em;
 }
 
 /* Página de inicio */
-.btn__home{
+#btn__home{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,15 +105,15 @@ button{
   border-radius: 5px;
 }
 
-.map__a{
+#map__a{
   background-color: #f00;
 }
 
-.map__b{
+#map__b{
   background-color: #000;
 }
 
-.map__c{
+#map__c{
   background-color: #000;
 }
 
@@ -130,12 +130,8 @@ button{
   margin-top: 1em;
 }
 
-.btn__medium__desktop, .btn__medium__mobile{
+#btn__medium{
   background-color: #f00;
-}
-
-#config .container__mobile{
-  display: none;
 }
 
 #game__over{
@@ -152,13 +148,13 @@ button{
 }
 
 /* Botones de movimiento */
-.movement_container{
+#movement_container{
   display: flex;
   justify-content: space-between;
   background-color: #000000bd;
 }
 
-.movement_container img{
+#movement_container img{
   width: 2em;
   height: 2em;
 }
@@ -178,7 +174,7 @@ button{
   -webkit-user-drag: none; /* Para iOS Safari */
 }
 
-.canvas{
+#canvas{
   background-image: url("../assets/images/maps/galaxia.jfif");
   background-size: cover;
   border: 2px solid #000;
@@ -187,7 +183,7 @@ button{
 
 @media only screen and (max-width:768px){
 
-  .canvas{
+  #canvas{
     width: calc(100vw - .5em);
     height: 20em;
   }
@@ -214,16 +210,47 @@ button{
     padding-top: 3em;
   }
 
-  #config .container__desktop{
+  #config .container{
     display: none;
-  }
-
-  #config .container__mobile{
-    display: flex;
   }
 
   h1, h2{
     font-size: 2.5em;
     padding: .4em 0;
+  }
+}
+
+@media only screen and (max-height:500px){
+  #page__container{
+    align-items: start;
+  }
+
+  #canvas{
+    height: calc(100vh - 4px);
+  }
+
+  .container{
+    height: calc(100vh - 4px);
+  }
+
+  #btn__home img{
+    width: 1.5em;
+  }
+  
+  /* Página de inicio */
+  #btn__home{
+    position:absolute;
+    top: .1em;
+    right: .2em;
+    border-radius: 50%;
+  }
+
+  #movement_container{
+    position: absolute;
+    width: calc(100vw - 4px);
+    top:calc(100vh - 4px - 4em);
+    display: flex;
+    justify-content: space-between;
+    background-color: #00000000;
   }
 }
